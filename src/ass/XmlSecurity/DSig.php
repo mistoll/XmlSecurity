@@ -501,8 +501,10 @@ class DSig
         $exponent = $rsa['e'];
 
         $keyInfo = $doc->createElementNS(DSig::NS_XMLDSIG, DSig::PFX_XMLDSIG.':KeyInfo');
+        $keyValue = $doc->createElementNS(DSig::NS_XMLDSIG, DSig::PFX_XMLDSIG.':KeyValue');
+        $keyInfo->appendChild($keyValue);
         $rsaKeyValue = $doc->createElementNS(DSig::NS_XMLDSIG, DSig::PFX_XMLDSIG.':RSAKeyValue');
-        $keyInfo->appendChild($rsaKeyValue);
+        $keyValue->appendChild($rsaKeyValue);
     
         if (isset($modulus)) {
             $eModulus = $doc->createElementNS(DSig::NS_XMLDSIG, DSig::PFX_XMLDSIG.':Modulus', base64_encode($modulus));
